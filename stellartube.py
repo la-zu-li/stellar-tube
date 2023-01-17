@@ -4,6 +4,7 @@ from os.path import exists
 from os import remove
 
 from pytube import YouTube
+from pytube import Playlist
 from pytube.exceptions import RegexMatchError
 
 from ffmpy import FFmpeg
@@ -18,11 +19,11 @@ def getVideoFromYoutube(url):
 
 def getPlaylistFromYoutube(url):
     try:
-        video = YouTube(url)
+        playlist = Playlist(url)
     except RegexMatchError:
-        print(f"Invalid video URL. The URL '{url}' is not an URL to an Youtube playlist.", file=stderr)
+        print(f"Invalid playlist URL. The URL '{url}' is not an URL to an Youtube playlist.", file=stderr)
         return None
-    return video
+    return playlist
 
 def downloadFileFromYoutube(url, file_name=None, folder_path=None, media_type="audio"):
     video = getVideoFromYoutube(url)
@@ -51,7 +52,7 @@ def downloadPlaylistFromYouTube(url, folder_path, media_type):
     for x in pls:
         downloadFileFromYoutube(x, folder_path=folder_path, media_type=media_type)
 
-def convertFiles(folder_path, extension, delete):
+def convertFiles(folder_path, extension, delete_old=True):
 
     if not exists(folder_path):
         print(f"Invalid path. The folder '{folder_path}' does not exist.", file=stderr)
@@ -60,11 +61,12 @@ def convertFiles(folder_path, extension, delete):
     old_files = lsdir(folder_path)
     new_files = [x.split('.') for x in old_files]
     new_files = ['.'.join(x[:-1] + [extension]) if len(x) > 1 else '.'.join(x + extension) for x in new_files]
-    
-    converter = FFmpeg(
+
+    FFmpeg(
         inputs=dict([(folder_path+x, None) for x in old_files]),
         outputs=dict([(folder_path+x, None) for x in new_files])
-    )
-
-    for x in old_files:
-        remove(x)
+    ).run()
+    
+    if delete_old:
+        for x in old_files:
+            remove(folder_path + x)
