@@ -1,2 +1,7 @@
 tests.py
 __pycache__
+*.flac
+*.mp3
+*.wav
+*.m4a
+*.webm
