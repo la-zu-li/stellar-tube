@@ -1,13 +1,10 @@
 from sys import stderr
-from os import listdir as lsdir
 from os.path import exists
-from os import remove
+from argparse import ArgumentParser
 
 from yt_dlp.YoutubeDL import YoutubeDL
 
 def configure(format='mp3', quiet=True, verbose=False, folder_path='./', video_code=False, track_numbers=False):
-    global options
-
     options = {
         "quiet": quiet,
         "verbose": verbose,
@@ -31,7 +28,6 @@ def configure(format='mp3', quiet=True, verbose=False, folder_path='./', video_c
 
     options["outtmpl"] = folder_path + options["outtmpl"]
 
-configure('flac', False, False, "/home/lazuli/Music/Musiquitas/Gris Soundtrack/", False, True)
+    return options
 
-downloader = YoutubeDL(options)
-downloader.download("https://youtube.com/playlist?list=PLPUc0Mgs4Cs4D8BGffxUag083ek_mhZw2")
+options = configure('flac', False, False, "/home/lazuli/Music/Musiquitas/Stardew Valley OST/", False, True)
