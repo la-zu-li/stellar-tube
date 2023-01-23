@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 
 parser = ArgumentParser(
-    prog = "stellar tube",
+    prog = "stellartube",
     description = "a media downloader from YouTube.",
     epilog = "Definitions for 'epilog': \n\t"
          + "1. Alternative spelling of epilogue\n\t"
@@ -9,8 +9,9 @@ parser = ArgumentParser(
          + "3. a short passage added at the end of a literary work"
 )
 
-parser.add_argument("-p", "--playlist")
+parser.add_argument("url", help="URL to download")
+parser.add_argument("-p", "--playlist", help="download all videos from a playlist instead", action="store_true")
 
-options = parser.parse_args(["-p"])
-
-print(options.playlist)
+if __name__ == '__main__':
+    args = parser.parse_args()
+    print(args.url)

@@ -4,6 +4,8 @@ from argparse import ArgumentParser
 
 from yt_dlp.YoutubeDL import YoutubeDL
 
+from lib.argument_parsing import parser
+
 def configure(format='mp3', quiet=True, verbose=False, folder_path='./', video_code=False, track_numbers=False):
     options = {
         "quiet": quiet,
@@ -30,4 +32,18 @@ def configure(format='mp3', quiet=True, verbose=False, folder_path='./', video_c
 
     return options
 
-options = configure('flac', False, False, "/home/lazuli/Music/Musiquitas/Stardew Valley OST/", False, True)
+args = parser.parse_args()
+
+url = args.
+codec = 'flac'
+quiet = True
+verbose = True
+path = './files/'
+video_code = False
+track_numbers = False
+
+if args.playlist:
+    track_numbers = True
+
+options = configure(codec, quiet, verbose, path, video_code, track_numbers)
+YoutubeDL(options).download()
