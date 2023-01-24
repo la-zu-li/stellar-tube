@@ -12,7 +12,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "-p", "--playlist",
-    help="download all videos from a playlist instead",
+    help="put playlist indexing on filename when downloading videos from a playlist",
     action="store_true"
 )
 parser.add_argument(
@@ -23,7 +23,7 @@ parser.add_argument(
 parser.add_argument(
     "-f", "--format",
     help="final media-file format (post-download)",
-    default="mp3",
+    default=None,
     choices=["mp2", "mp3", "m4a", "ogg", "flac", "wav", "mp4", "mkv", "avi", "ogv"]
 )
 parser.add_argument(

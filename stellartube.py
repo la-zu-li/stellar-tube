@@ -67,6 +67,11 @@ def main():
     convert = not args.do_not_convert
     track_numbers = False
 
+    if not file_format:
+        if media_type == "audio_only":
+            file_format = "mp3"
+        else:
+            file_format = "mp4"
 
     if not exists(path):
         print(f"unexistent folder {path}", file=stderr)
