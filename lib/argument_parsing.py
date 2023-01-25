@@ -1,11 +1,21 @@
 from argparse import ArgumentParser
 
-parser = ArgumentParser(
-    prog = "stellartube",
-    description = "a media downloader from YouTube.",
-    epilog = "and then, stellar-tube and their friends lived happily ever after. THE END."
-)
+logo = """
+           ⢠        ⣄ ⢠⡀
+      ⢀⣤⠾⢋⣡⣼⣧⠤ ⢀⣤⣤⡀ ⣿ ⢸⡇   ⢀⣾⣆   ⢸⣆⣤⠤
+     ⠐⠛⠷⢦⡤ ⢸⡇⠠⣾⣿⠥⠼⠇ ⢸⡇ ⣿ ⠙⠿⣿⣥⣽⡿⠟⠁⢸⡏
+    ⢀⣀⣴⠟⠋  ⠘⣿ ⠈⠻⠶⠶⠖⠂⠈⣷ ⢹⡆ ⣼⠿⠁⠹⢿⡄ ⠘⣷
+            ⠻        ⠙⠆⠈⠳         ⠙
+        ⢠⣶⣶⣶⣶⡄⢠⣶⡄⢠⣶⡄⢠⣶⡄   ⢀⣴⣶⣶⣦⡀
+         ⠉⣿⣿⠉ ⢸⣿⡇⢸⣿⡇⢸⣿⣷⣶⣶⡄⢸⣿⡿⠿⠿⠃
+          ⢿⡿  ⠘⢿⣿⣿⡿⠃⠸⣿⣿⣿⣿⠇⠘⢿⣿⣿⣿⠆ 
+    """
 
+parser = ArgumentParser(
+    prog = logo,
+    description = "a media downloader from YouTube.",
+    epilog = "developed by Lazuli, a non-binary who cares"
+)
 parser.add_argument(
     "url",
     help="URL to download"
@@ -32,13 +42,15 @@ parser.add_argument(
     default="audio_only",
     choices=["audio_only", "audio_and_video", "video_only"]
 )
-parser.add_argument(
+verbose_or_quiet = parser.add_mutually_exclusive_group()
+
+verbose_or_quiet.add_argument(
     "-v", "--verbose",
     help="display more downloading information",
     action="store_true",
     default=False
 )
-parser.add_argument(
+verbose_or_quiet.add_argument(
     "-q", "--quiet",
     help="display no downloading information",
     action="store_true",
