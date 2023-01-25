@@ -45,7 +45,7 @@ Or, the following, for a file with audio and video:
 python stellartube.py <VIDEO URL> -d <destination folder> -t audio_and_video
 ```
 
-When downloading only audio, the file is converted by default to mp3, if audio-only, or to mp4, if it's video-only or both both audio and video. To specify another format, run with the following option:
+After downloading, the file is converted by default to mp3, if audio-only, or to mp4, if it's video-only or both both audio and video. To specify another format, run with the following option:
 
 ```bash
 python stellartube.py <VIDEO URL> -d <destination folder> -f <preferred format>
@@ -63,7 +63,7 @@ If you want to download all the videos from a playlist, you can provide the url 
 python stellartube.py <PLAYLIST URL> -d <destination folder> -p
 ```
 
-To get information about stellartune usage, run the following:
+To get information about stellar-tube usage, run the following:
 
 ```bash
 python stellartube.py -h
@@ -78,10 +78,11 @@ python stellartube.py -h
   - This item is a magic star-shaped guitar, that shoots stars when played. It's a magic weapon, that has a small chance to drop from Empress of Light.
 - The developing of stellar-tube took about one week.
 - Stellar-tube was the result of the second of some programming challenges two friends of mine organized. The challenge was developing a program able to download audio from youtube videos and youtube playlists.
+  - The challenge was originally going to be a pacman parody game with pygame, but it didn't work out for any of us (I also wasn't in the mood for it), so we changed it.
 - Stellar-tube will also be very useful to me, because I like to download music from Youtube, and I think Youtube Premium is stupid. I used to do that before using a browser extension and some scripts I made that converted the files, but the download part was mostly manual. Not anymore. I can just run this baby now.
 - I loved watching "Puss and Boots: The Last Wish". In fact, I love it so much that I made subtitles in portuguese for it.
 - I used [this video](https://www.youtube.com/watch?v=7caT5jhPcLc) to make a few tests when developing stellar-tube. I also used a playlist with Stardew Valley soundtrack, and one with GRIS soundtrack.
 - I didn't know what to put in the epilog of stellar-tube, so in earlier versions of this project the epilog actually had the definition of "epilog".
   - When I got tired of it, I replaced it by a text that said "and then, stellar-tube and their friends lived happily ever after. THE END."
 - I wanted to make a cool logo to display at the command-line-interface of the program. But after being done with it, I figured it would work better without a command-line-interface. I made the logo with braille-art anyway, and put it in the help message.
-  - I made the logo using [this tool](braille-txt.github.io/)
+  - I made the logo using [this tool](https://braille-txt.github.io/)
