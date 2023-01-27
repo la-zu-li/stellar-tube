@@ -1,5 +1,6 @@
 from sys import stderr
-from os.path import exists, makedirs
+from os.path import exists
+from os import makedirs
 
 from yt_dlp.YoutubeDL import YoutubeDL
 
@@ -91,7 +92,10 @@ def main():
     options = configure(media_type, convert, file_format, quiet, verbose, path, video_id, track_numbers)
     
     if(options):
-        YoutubeDL(options).download(url)
+        ydl = YoutubeDL(options)
+        ydl.download(url)
+
+    print(a)
 
 
 main()
