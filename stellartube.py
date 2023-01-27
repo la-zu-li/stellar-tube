@@ -1,6 +1,5 @@
 from sys import stderr
-from os.path import exists
-from argparse import ArgumentParser
+from os.path import exists, makedirs
 
 from yt_dlp.YoutubeDL import YoutubeDL
 
@@ -74,8 +73,14 @@ def main():
             file_format = "mp4"
 
     if not exists(path):
-        print(f"unexistent folder {path}", file=stderr)
-        return
+        print(f"unexistent folder {path}. Would you like to create it? (y/n)")
+        a = input().lower()
+
+        if(a == 'y' or a == 'yes'):
+            makedirs(path)
+        else:
+            print("stopped.")
+            return
     
     if path[-1] != '/':
         path += "/"
