@@ -4,14 +4,16 @@ from os import makedirs
 
 from yt_dlp.YoutubeDL import YoutubeDL
 
+from lib.utils import set_indexes_in_filenames
 from lib.argument_parsing import parser
+from lib.custom_postprocessing import FilenameExtractorPP
 
-def configure(media_type='audio', convert=True, file_format='mp3', quiet=True, verbose=False, folder_path='./', video_id=False, track_numbers=False):
+def configure(media_type='audio', convert=True, file_format='mp3', quiet=True, verbose=False, folder_path='./', video_id=False):
     options = {
         "quiet": quiet,
         "verbose": verbose,
         "force_title": not quiet,
-        "external_downloader": "native",
+        "external_downloader": "native"
     }
 
     if media_type == "audio_only":
@@ -40,14 +42,11 @@ def configure(media_type='audio', convert=True, file_format='mp3', quiet=True, v
                 'key': 'FFmpegVideoConvertor',
                 'preferedformat': file_format
             }]
-
+    
     if video_id:
         options["outtmpl"] = "%(title)s [%(id)s] .%(ext)s"
     else:
         options["outtmpl"] = "%(title)s.%(ext)s"
-
-    if track_numbers:
-        options["outtmpl"] = "%(playlist_index)d - " + options["outtmpl"]
 
     options["outtmpl"] = folder_path + options["outtmpl"]
 
@@ -63,9 +62,9 @@ def main():
     verbose = args.verbose
     path = args.destination_folder
     video_id = args.id_in_filename
+    playlist_indexing = args.playlist
 
     convert = not args.do_not_convert
-    track_numbers = False
 
     if not file_format:
         if media_type == "audio_only":
@@ -74,7 +73,7 @@ def main():
             file_format = "mp4"
 
     if not exists(path):
-        print(f"unexistent folder {path}. Would you like to create it? (y/n)")
+        print(f"unexistent folder '{path}'. Would you like to create it? (y/n)")
         a = input().lower()
 
         if(a == 'y' or a == 'yes'):
@@ -86,16 +85,17 @@ def main():
     if path[-1] != '/':
         path += "/"
 
-    if args.playlist:
-        track_numbers = True
-
-    options = configure(media_type, convert, file_format, quiet, verbose, path, video_id, track_numbers)
+    options = configure(media_type, convert, file_format, quiet, verbose, path, video_id)
     
-    if(options):
+    if options:
+        filename_extractor = FilenameExtractorPP()
+        
         ydl = YoutubeDL(options)
+        ydl.add_post_processor(filename_extractor)
+        
         ydl.download(url)
 
-    print(a)
-
+        if playlist_indexing:
+            set_indexes_in_filenames(filename_extractor.filenames)
 
 main()
