@@ -79,8 +79,7 @@ python stellartube.py -h
 - The developing of stellar-tube took about one week.
 - Stellar-tube was the result of the second of some programming challenges two friends of mine organized. The challenge was developing a program able to download audio from youtube videos and youtube playlists.
   - The challenge was originally going to be a pacman parody game with pygame, but it didn't work out for any of us (I also wasn't in the mood for it), so we changed it.
-- Stellar-tube will also be very useful to me, because I like to download music from Youtube, and I think Youtube Premium is stupid. I used to do that before using a browser extension and some scripts I made that converted the files, but the download part was mostly manual. Not anymore. I can just run this baby now.
-- I loved watching "Puss and Boots: The Last Wish". In fact, I love it so much that I made subtitles in portuguese for it.
+- Stellar-tube will also be very useful to me, because I like to download music from Youtube ~~and I think Youtube Premium is stupid~~. I used to do that before using a browser extension and some scripts I made that converted the files, but the download part was mostly manual. Not anymore. I can just run this now instead.
 - I used [this video](https://www.youtube.com/watch?v=7caT5jhPcLc) to make a few tests when developing stellar-tube. I also used a playlist with Stardew Valley soundtrack, and one with GRIS soundtrack.
 - I didn't know what to put in the epilog of stellar-tube, so in earlier versions of this project the epilog actually had the definition of "epilog".
   - When I got tired of it, I replaced it by a text that said "and then, stellar-tube and their friends lived happily ever after. THE END."
